@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         java: [ 21 ]
-        dockerfile-path: [extra/Dockerfile]
+        dockerfile-path: [Dockerfile]
         include:
           - dockerfile-path: extra/Dockerfile
             build-cmd: mvn clean package --file extra/pom.xml -Dcheckstyle.skip -Dmaven.test.skip=true
