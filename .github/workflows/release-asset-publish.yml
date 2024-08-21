@@ -16,6 +16,7 @@ jobs:
     steps:
       - name: Check out Repository
         uses: actions/checkout@v4
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -25,6 +26,7 @@ jobs:
 
       - name: Build base .jar via Maven
         run: mvn clean package -Dcheckstyle.skip -Dmaven.test.skip=true
+
       - name: Upload and attach base .jar to release
         uses: svenstaro/upload-release-action@v2
         with:
@@ -35,6 +37,7 @@ jobs:
 
       - name: Build bundled .jar via Maven
         run: mvn clean package --file extra/pom.xml -Dcheckstyle.skip -Dmaven.test.skip=true
+
       - name: Upload and attach bundled .jar to release
         uses: svenstaro/upload-release-action@v2
         with:
