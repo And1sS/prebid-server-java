@@ -24,6 +24,7 @@ jobs:
           - dockerfile-path: Dockerfile
             build-cmd: mvn clean package -Dcheckstyle.skip -Dmaven.test.skip=true
             package-name: ghcr.io/${{ github.repository }}
+
           - dockerfile-path: Dockerfile-modules
             build-cmd: mvn clean package --file extra/pom.xml -Dcheckstyle.skip -Dmaven.test.skip=true
             package-name: ghcr.io/${{ github.repository }}-bundle
@@ -62,3 +63,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          annotations:
+            - This is test annotation
+            - This one is also an annotation
