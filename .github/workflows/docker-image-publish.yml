@@ -22,8 +22,8 @@ jobs:
         dockerfile-path: [Dockerfile-modules]
         include:
           - dockerfile-path: Dockerfile-modules
-            build-cmd: mvn clean package --file pom.xml -Dcheckstyle.skip -Dmaven.test.skip=true
-            package-name: ghcr.io/${{ github.repository }}-bundle
+            build-cmd: mvn clean package --file extra/pom.xml -Dcheckstyle.skip -Dmaven.test.skip=true
+            package-name: ghcr.io/${{ github.repository }}
     steps:
       - name: Set up JDK
         uses: actions/setup-java@v3
