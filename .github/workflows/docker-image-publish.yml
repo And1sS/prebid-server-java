@@ -19,11 +19,14 @@ jobs:
     strategy:
       matrix:
         java: [ 21 ]
-        dockerfile-path: [Dockerfile-modules]
+        dockerfile-path: [Dockerfile, Dockerfile-modules]
         include:
+          - dockerfile-path: Dockerfile
+            build-cmd: mvn clean package -Dcheckstyle.skip -Dmaven.test.skip=true
+            package-name: ghcr.io/${{ github.repository }}
           - dockerfile-path: Dockerfile-modules
             build-cmd: mvn clean package --file extra/pom.xml -Dcheckstyle.skip -Dmaven.test.skip=true
-            package-name: ghcr.io/${{ github.repository }}
+            package-name: ghcr.io/${{ github.repository }}-bundle
     steps:
       - name: Check out Repository
         uses: actions/checkout@v4
