@@ -38,9 +38,6 @@ jobs:
       - name: Build .jar via Maven
         run: ${{ matrix.build-cmd }}
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
