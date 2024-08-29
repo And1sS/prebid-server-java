@@ -61,16 +61,11 @@ jobs:
         with:
           images: ${{ matrix.package-name }}
 
-      - name: Echo meta
-        env:
-          TESTXXXY: ${{ steps.meta.outputs.tags }}
-        run:
-          echo "$TESTXXXY"
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ${{ matrix.dockerfile-path }}
           push: true
-          tags: ${{ steps.get-latest-tag.outputs.tag }}
+          tags: ghcr.io/and1ss/prebid-server-java:${{ steps.get-latest-tag.outputs.tag }}
           labels: ${{ steps.get-latest-tag.outputs.tag }}
