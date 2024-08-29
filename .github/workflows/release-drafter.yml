@@ -9,7 +9,7 @@ jobs:
   update_release_draft:
     name: Publish release with notes
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, 'Prebid Server prepare release XX')"
+    if: "contains(github.event.head_commit.message, 'Prebid Server prepare release ')"
     steps:
       - name: Extract tag from commit message
         run: |
