@@ -1,8 +1,10 @@
 name: Publish Docker image for new tag/release
 
 on:
-  release:
-    types: [ published ]
+  workflow_run:
+    workflows: [Publish release]
+    types:
+      - completed
 
 env:
   REGISTRY: ghcr.io
@@ -12,6 +14,7 @@ jobs:
   build:
     name: Publish Docker image for new tag/release
     runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Prebid Server prepare release ')"
     permissions:
       contents: read
       packages: write
